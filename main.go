@@ -105,6 +105,10 @@ func publish(ch wabbit.Channel, message string) error {
 	if err != nil {
 		return err
 	}
-	log.Println("success to publish: ", message)
+	logMsg := message
+	if len([]rune(message)) > 100 {
+		logMsg = string([]rune(message)[0:99])
+	}
+	log.Println("success to publish: ", logMsg)
 	return nil
 }
